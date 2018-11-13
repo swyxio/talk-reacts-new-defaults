@@ -1,0 +1,51 @@
+{
+  "aliases": [
+    "Punisher"
+  ],
+  "authors": [
+    "Jack Kirby",
+    "Stan Lee"
+  ],
+  "description": "The Punisher is a fictional character that appears in comic books published by Marvel Comics.",
+  "images": {
+    "background": "http://x.annihil.us/u/prod/marvel/i/mg/2/10/537bbfbac70ee.gif",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/en/7/7e/Fantastic_Four_No._74.jpg"
+  },
+  "mainColor": {
+    "blue": 40,
+    "green": 38,
+    "hexa": "0D2628",
+    "red": 13
+  },
+  "name": "Punisher (Galactus)",
+  "partners": [
+  ],
+  "powers": [
+    "Durability",
+    "Force field generation",
+    "Self-repair",
+    "Speed",
+    "Superhuman strength"
+  ],
+  "ranking": {
+    "comicCount": 378,
+    "eventCount": 9,
+    "pageviewCount": 689,
+    "serieCount": 80,
+    "storyCount": 538
+  },
+  "secretIdentities": [
+  ],
+  "species": [
+  ],
+  "superName": "Punisher",
+  "teams": [
+    "Frightful Four",
+    "Galactus",
+    "Heralds of Galactus"
+  ],
+  "urls": {
+    "marvel": "http://marvel.com/characters/43/punisher",
+    "wikipedia": "https://en.wikipedia.org/wiki/Punisher_(Galactus)"
+  }
+}
