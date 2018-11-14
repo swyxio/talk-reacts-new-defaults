@@ -1,6 +1,13 @@
 .App {
-  width: 400px;
+  /* width: 400px; */
   margin: 0 auto;
+}
+.BiPanel {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  height: 100vh;
 }
 .Fallback {
   text-align: center;

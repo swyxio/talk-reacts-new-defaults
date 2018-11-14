@@ -1,20 +1,69 @@
-import React, { Suspense } from 'react';
+import React, { ConcurrentMode, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './client/App';
+import CmodeApp from './client-concurrent/App';
+import SmodeApp from './client-sync/App';
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container); // concurrentMode
-root.render(
-  <div>
-    <Suspense fallback={<Timer />} maxDuration={0}>
-      <h3 style={{ textAlign: 'center' }}>
-        <em>Characters of</em> Stan Lee
-      </h3>
-      <App />
-    </Suspense>
-  </div>
-);
+function CheckBox({ label, state, handler }) {
+  return (
+    <label>
+      <input type="checkbox" checked={state} onChange={() => handler(label)} />
+      {label}
+    </label>
+  );
+}
+
+class App extends React.Component {
+  state = { Synchronous: true, Concurrent: false };
+  handler = modeName => this.setState({ [modeName]: !this.state[modeName] });
+  render() {
+    const { Synchronous, Concurrent } = this.state;
+    return (
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <h3 style={{ paddingRight: 10 }}>
+            <em>Characters of</em> Stan Lee
+          </h3>
+          <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
+            <CheckBox
+              label="Synchronous"
+              state={Synchronous}
+              handler={this.handler}
+            />
+            <CheckBox
+              state={Concurrent}
+              label="Concurrent"
+              handler={this.handler}
+            />
+          </div>
+        </div>
+        <div className="BiPanel">
+          {Synchronous && <SMode />}
+          {Concurrent && <CMode />}
+        </div>
+      </div>
+    );
+  }
+}
+function SMode() {
+  return (
+    <div>
+      <SmodeApp />
+    </div>
+  );
+}
+function CMode() {
+  return (
+    <ConcurrentMode>
+      <Suspense fallback={<Timer />} maxDuration={0}>
+        <CmodeApp />
+      </Suspense>
+    </ConcurrentMode>
+  );
+}
+
+// syncMode
+ReactDOM.render(<App />, document.getElementById('root'));
 
 function Timer() {
   const startTime = React.useRef(performance.now());
@@ -34,6 +83,3 @@ function Timer() {
     </div>
   );
 }
-
-// syncMode
-// ReactDOM.render(<App />, document.getElementById('root'));
