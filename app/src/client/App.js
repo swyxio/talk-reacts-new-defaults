@@ -23,6 +23,10 @@ class HeroCard extends Component {
   }
 }
 
+// ❌ Will show three 🌀's
+// ❌ Even if the data loads almost instantly
+// ❌ UI may jump around if 2 loads before 1 or 3
+
 // class App extends Component {
 //   state = null;
 //   componentDidMount = () => {
