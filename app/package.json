@@ -8,7 +8,8 @@
     "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.7.0-alpha.1",
     "react-scripts": "2.1.1",
-    "scheduler": "^0.12.0-alpha.1"
+    "scheduler": "^0.12.0-alpha.1",
+    "styled-components": "^4.1.1"
   },
   "scripts": {
     "start": "run-p start:**",

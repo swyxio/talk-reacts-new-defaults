@@ -1,52 +1,54 @@
 import React, { Component } from 'react';
-import './App.css';
+import Card from './components/Card';
+import { getInfo } from './api';
 
-class LambdaDemo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false, msg: null };
+export default function App() {
+  return (
+    <div className="App">
+      <HeroCard id={1} delay={200} />
+      <HeroCard id={2} delay={2000} />
+      <HeroCard id={3} delay={200} />
+    </div>
+  );
+}
+
+class HeroCard extends Component {
+  state = null;
+  componentDidMount() {
+    getInfo(this.props).then(x => this.setState(x));
   }
-
-  handleClick = e => {
-    e.preventDefault();
-
-    this.setState({ loading: true });
-    fetch('/.netlify/functions/hello')
-      .then(response => response.json())
-      .then(
-        json =>
-          console.log(json) || this.setState({ loading: false, msg: json.msg })
-      );
-  };
-
   render() {
-    const { loading, msg } = this.state;
-
-    return (
-      <p>
-        <button onClick={this.handleClick}>
-          {loading ? 'Loading...' : 'Call Lambda'}
-        </button>
-        <br />
-        <span>{msg}</span>
-      </p>
-    );
+    if (!this.state) return '🌀';
+    return <Card {...this.state} />;
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
-      </div>
-    );
-  }
-}
+// class App extends Component {
+//   state = null;
+//   componentDidMount = () => {
+//     this.handleClick();
+//   };
 
-export default App;
+//   handleClick = () => {
+//     getList({ delay: 0, idx: 0 }).then(
+//       json => console.log(json) || this.setState(json)
+//     );
+//   };
+
+//   render() {
+//     if (!this.state) return 'loading...';
+//     const { data, count } = this.state;
+//     return (
+//       <div className="App">
+//         <button onClick={this.handleClick}>'Load data'</button>
+//         <br />
+//         <p>
+//           Showing first 3 of {count} characters by <b>Stan Lee</b>
+//         </p>
+//         {data.map((item, i) => (
+//           <Card {...item} key={i} />
+//         ))}
+//       </div>
+//     );
+//   }
+// }

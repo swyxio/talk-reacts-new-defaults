@@ -2,7 +2,20 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './client/index.css';
+import './index.css';
 import App from './client/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// syncMode
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+// concurrentMode
+const container = document.getElementById('root');
+const root = ReactDOM.unstable_createRoot(container);
+root.render(
+  <div>
+    <h3 style={{ textAlign: 'center' }}>
+      <em>Characters of</em> Stan Lee
+    </h3>
+    <App />
+  </div>
+);
