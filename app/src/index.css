@@ -2,6 +2,9 @@
   width: 400px;
   margin: 0 auto;
 }
+.Fallback {
+  text-align: center;
+}
 body {
   margin: 0;
   padding: 0;
