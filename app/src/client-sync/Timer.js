@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { TimerComponent } from 'components/TimerComponent';
 
-export default class Timer extends React.Component {
+// 🐌🐌🐌🐌🐌🐌🐌
+// Classes
+// 🐌🐌🐌🐌🐌🐌🐌
+export default class Timer extends Component {
   startTime = performance.now();
   state = { time: performance.now() };
   componentDidMount = () => {
@@ -23,24 +27,10 @@ export default class Timer extends React.Component {
   }
 }
 
-// unimportant implementation detail
-function TimerComponent({ time }) {
-  return (
-    <div className="Fallback">
-      <h3>
-        <span role="img" aria-label="spinner">
-          🌀 Loading...
-        </span>
-      </h3>
-      <b>{time} ms</b>
-    </div>
-  );
-}
-
 // export default function Timer() {
-//   const startTime = React.useRef(performance.now());
-//   const [time, setTime] = React.useState(performance.now());
-//   React.useEffect(() => {
+//   const startTime = useRef(performance.now());
+//   const [time, setTime] = useState(performance.now());
+//   useEffect(() => {
 //     const id = setTimeout(() => {
 //       ReactDOM.flushSync(() => {
 //         setTime(performance.now());
