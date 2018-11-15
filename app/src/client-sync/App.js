@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import Card from '../components/Card';
-import { getInfo } from '../api';
+import Card from 'components/Card';
+import { getInfo } from 'api';
+import { IDXContext } from 'context';
 
-export default function App() {
-  return (
-    <div className="App">
-      <h3>Synchronous</h3>
-      <HeroCard id={1} delay={100} />
-      <HeroCard id={2} delay={100} />
-      <HeroCard id={3} delay={100} />
-    </div>
-  );
+export default class App extends Component {
+  static contextType = IDXContext;
+  render() {
+    const idx = this.context;
+    return (
+      <div className="App">
+        <h3 style={{ textAlign: 'center', color: 'red' }}>Synchronous</h3>
+        <HeroCard id={idx} delay={100} />
+        <HeroCard id={idx + 1} delay={100} />
+        <HeroCard id={idx + 2} delay={100} />
+      </div>
+    );
+  }
 }
 
 class HeroCard extends Component {
@@ -18,6 +23,11 @@ class HeroCard extends Component {
   componentDidMount() {
     getInfo(this.props).then(x => this.setState(x));
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id)
+      getInfo(this.props).then(x => this.setState(x));
+  }
+  // cancel fetch when unmount?
   render() {
     if (!this.state) return '🌀';
     return <Card {...this.state} />;

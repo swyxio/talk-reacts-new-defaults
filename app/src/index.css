@@ -2,6 +2,36 @@
   /* width: 400px; */
   margin: 0 auto;
 }
+
+input[type='number'] {
+  position: relative;
+  margin: 0 0 1rem;
+  border: 1px solid #bbb;
+  border-color: #bbb #ececec #ececec #bbb;
+  padding: 0.2rem;
+  width: 30px;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  background: #fff
+    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAKUlEQVQYlWNgwAT/sYhhKPiPT+F/LJgEsHv37v+EMGkmkuImoh2NoQAANlcun/q4OoYAAAAASUVORK5CYII=)
+    no-repeat center center;
+  width: 1em;
+  border-left: 1px solid #bbb;
+  opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+input[type='number']::-webkit-inner-spin-button:hover,
+input[type='number']::-webkit-inner-spin-button:active {
+  box-shadow: 0 0 2px #0cf;
+  opacity: 0.8;
+}
+
 .BiPanel {
   display: grid;
   grid-template-columns: 1fr;

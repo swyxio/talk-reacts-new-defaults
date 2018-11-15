@@ -1,8 +1,10 @@
 import React, { ConcurrentMode, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import CmodeApp from './client-concurrent/App';
-import SmodeApp from './client-sync/App';
+import 'index.css';
+import CmodeApp from 'client-concurrent/App';
+import SmodeApp from 'client-sync/App';
+import { IDXContext } from 'context';
+import Timer from './Timer';
 
 function CheckBox({ label, state, handler }) {
   return (
@@ -14,17 +16,30 @@ function CheckBox({ label, state, handler }) {
 }
 
 class App extends React.Component {
-  state = { Synchronous: true, Concurrent: false };
+  state = { Synchronous: true, Concurrent: false, idx: 0 };
+  onIdx = e => this.setState({ idx: Number(e.target.value) });
   handler = modeName => this.setState({ [modeName]: !this.state[modeName] });
   render() {
-    const { Synchronous, Concurrent } = this.state;
+    const { Synchronous, Concurrent, idx } = this.state;
     return (
       <div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <h3 style={{ paddingRight: 10 }}>
-            <em>Characters of</em> Stan Lee
-          </h3>
-          <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
+          <div>
+            <h3 style={{ paddingRight: 10 }}>
+              <em>Characters of</em> Stan Lee
+            </h3>
+            <label>
+              <input type="number" value={idx} min="0" onChange={this.onIdx} />-{' '}
+              {idx + 2} of 296 characters
+            </label>
+          </div>
+          <div
+            style={{
+              display: 'inline-flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
             <CheckBox
               label="Synchronous"
               state={Synchronous}
@@ -37,10 +52,12 @@ class App extends React.Component {
             />
           </div>
         </div>
-        <div className="BiPanel">
-          {Synchronous && <SMode />}
-          {Concurrent && <CMode />}
-        </div>
+        <IDXContext.Provider value={idx}>
+          <div className="BiPanel">
+            {Synchronous && <SMode />}
+            {Concurrent && <CMode />}
+          </div>
+        </IDXContext.Provider>
       </div>
     );
   }
@@ -55,31 +72,15 @@ function SMode() {
 function CMode() {
   return (
     <ConcurrentMode>
-      <Suspense fallback={<Timer />} maxDuration={0}>
+      <Suspense fallback={<Timer />} unstable_maxDuration={1000}>
         <CmodeApp />
       </Suspense>
     </ConcurrentMode>
   );
 }
 
-// syncMode
-ReactDOM.render(<App />, document.getElementById('root'));
-
-function Timer() {
-  const startTime = React.useRef(performance.now());
-  const [time, setTime] = React.useState(performance.now());
-  React.useEffect(() => {
-    const id = setTimeout(() => {
-      ReactDOM.flushSync(() => {
-        setTime(performance.now());
-      });
-    }, 2);
-    return () => clearTimeout(id);
-  });
-  return (
-    <div className="Fallback">
-      <h3>🌀 App Level Suspense</h3>
-      <b>{Math.round(time - startTime.current)} ms</b>
-    </div>
-  );
-}
+// // syncMode
+// ReactDOM.render(<App />, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(<App />);

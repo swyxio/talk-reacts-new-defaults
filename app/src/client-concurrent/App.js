@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
-import Card from '../components/Card';
-import { getInfo } from '../api';
+import React, { Suspense } from 'react';
+import Card from 'components/Card';
+import { getInfo } from 'api';
 import { createResource } from './react-cache';
+import { IDXContext } from 'context';
+// import Timer from '../Timer';
 
 export default function App() {
+  const idx = React.useContext(IDXContext);
   return (
     <div className="App">
-      <h3>Concurrent</h3>
-      <HeroCard id={1} delay={100} />
-      <HeroCard id={2} delay={100} />
-      <HeroCard id={3} delay={100} />
+      <h3 style={{ textAlign: 'center', color: 'green' }}>Concurrent</h3>
+      <HeroCard id={idx} delay={100} />
+      <HeroCard id={idx + 1} delay={100} />
+      <HeroCard id={idx + 2} delay={100} />
     </div>
   );
 }

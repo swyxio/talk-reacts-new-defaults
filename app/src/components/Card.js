@@ -61,7 +61,10 @@ export default function Card(props) {
 
         <div
           className="content"
-          style={{ backgroundImage: `url(${images.background})` }}
+          // style={{ backgroundImage: `url(${images.background})` }}
+          style={{
+            backgroundImage: `url("http://i.annihil.us/u/prod/marvel/i/mg/5/03/537bb03773238.gif")`
+          }}
         >
           <h3 className="title">{superName}</h3>
 
