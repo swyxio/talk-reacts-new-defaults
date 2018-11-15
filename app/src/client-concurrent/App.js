@@ -13,8 +13,8 @@ export default class App extends Component {
   render() {
     const idx = this.context;
     return (
-      <div className="Synchronous App">
-        <h3>Synchronous</h3>
+      <div className="Concurrent App">
+        <h3>Concurrent</h3>
         <HeroCard id={idx} delay={100} />
         <HeroCard id={idx + 1} delay={1000} />
         <HeroCard id={idx + 2} delay={100} />

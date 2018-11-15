@@ -5,7 +5,7 @@ export function TimerComponent({ time }) {
     <div className="Fallback">
       <h3>
         <span role="img" aria-label="spinner">
-          🌀 App Level Suspense
+          🌀 Loading...
         </span>
       </h3>
       <b>{time} ms</b>
