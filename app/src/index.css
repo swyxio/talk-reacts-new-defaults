@@ -8,14 +8,14 @@
   color: red;
 }
 .Synchronous .Card {
-  outline: 3px solid red;
+  border: 3px solid red;
 }
 .Concurrent h3 {
   text-align: center;
   color: green;
 }
 .Concurrent .Card {
-  outline: 3px solid green;
+  border: 3px solid green;
 }
 
 input[type='number'] {
@@ -51,7 +51,10 @@ input[type='number']::-webkit-inner-spin-button:active {
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-flow: column;
+  grid-gap: 10px;
   grid-auto-columns: 1fr;
+  margin-left: 10px;
+  margin-right: 10px;
   height: 100vh;
 }
 .Fallback {
