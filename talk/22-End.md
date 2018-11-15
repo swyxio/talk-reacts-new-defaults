@@ -5,5 +5,6 @@
 
 ## Questions?
 
-- Github: https://github.com/sw-yx/talk-reacts-new-defaults
+- Github: https://git.io/fpGMN
 - Twitter: @swyx
+- Email: swyx@swyx.io
