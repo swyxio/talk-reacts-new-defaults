@@ -4,11 +4,26 @@ import 'index.css';
 import CmodeApp from 'client-concurrent/App';
 import SmodeApp from 'client-sync/App';
 import { IDXContext } from 'context';
-
+function getFromStorage(str, defaultValue) {
+  const temp = window.localStorage.getItem('reactsNewDefaults_' + str);
+  if (temp) return 'true' === temp;
+  else return defaultValue;
+}
+function setStorage(str, value) {
+  window.localStorage.setItem('reactsNewDefaults_' + str, value[str]);
+  return value;
+}
 class App extends React.Component {
-  state = { Synchronous: true, Concurrent: false, idx: 0 };
+  state = { idx: 0 };
+  componentDidMount = () => {
+    this.setState({
+      Synchronous: getFromStorage('Synchronous', true),
+      Concurrent: getFromStorage('Concurrent', false)
+    });
+  };
   onIdx = e => this.setState({ idx: Number(e.target.value) });
-  handler = modeName => this.setState({ [modeName]: !this.state[modeName] });
+  handler = modeName =>
+    this.setState(setStorage(modeName, { [modeName]: !this.state[modeName] }));
   render() {
     const { Synchronous, Concurrent, idx } = this.state;
     return (
