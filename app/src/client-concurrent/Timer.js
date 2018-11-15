@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { TimerComponent } from 'components/TimerComponent';
 
 // 🐇🐇🐇🐇🐇🐇
 // Hooks
 // 🐇🐇🐇🐇🐇🐇
-export default class Timer extends React.Component {
+export default class Timer extends Component {
   startTime = performance.now();
   state = { time: performance.now() };
   componentDidMount = () => {
