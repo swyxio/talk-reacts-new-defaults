@@ -4,16 +4,6 @@ import 'index.css';
 import CmodeApp from 'client-concurrent/App';
 import SmodeApp from 'client-sync/App';
 import { IDXContext } from 'context';
-import Timer from './Timer';
-
-function CheckBox({ label, state, handler }) {
-  return (
-    <label>
-      <input type="checkbox" checked={state} onChange={() => handler(label)} />
-      {label}
-    </label>
-  );
-}
 
 class App extends React.Component {
   state = { Synchronous: true, Concurrent: false, idx: 0 };
@@ -64,23 +54,32 @@ class App extends React.Component {
 }
 function SMode() {
   return (
-    <div>
+    <>
       <SmodeApp />
-    </div>
+    </>
   );
 }
 function CMode() {
   return (
     <ConcurrentMode>
-      <Suspense fallback={<Timer />} unstable_maxDuration={1000}>
-        <CmodeApp />
-      </Suspense>
+      <CmodeApp />
     </ConcurrentMode>
   );
 }
 
-// // syncMode
-// ReactDOM.render(<App />, document.getElementById('root'));
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
-root.render(<App />);
+function CheckBox({ label, state, handler }) {
+  return (
+    <label>
+      <input type="checkbox" checked={state} onChange={() => handler(label)} />
+      {label}
+    </label>
+  );
+}
+
+// syncMode
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// concurrentMode
+// const container = document.getElementById('root');
+// const root = ReactDOM.createRoot(container);
+// root.render(<App />);

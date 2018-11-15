@@ -41,18 +41,18 @@ const Div = styled.div`
 export default function Card(props) {
   const {
     images,
-    name,
+    // name,
     description,
-    aliases,
-    powers,
-    secretIdentities,
-    superName,
-    authors,
-    teams,
-    urls
+    // aliases,
+    // powers,
+    // secretIdentities,
+    superName
+    // authors,
+    // teams,
+    // urls
   } = props;
   return (
-    <Div>
+    <Div className="Card">
       <article>
         <div
           className="thumbnail"

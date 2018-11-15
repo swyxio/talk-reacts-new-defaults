@@ -1,6 +1,21 @@
 .App {
   /* width: 400px; */
   margin: 0 auto;
+  transition: all 0.5s ease;
+}
+.Synchronous h3 {
+  text-align: center;
+  color: red;
+}
+.Synchronous .Card {
+  outline: 3px solid red;
+}
+.Concurrent h3 {
+  text-align: center;
+  color: green;
+}
+.Concurrent .Card {
+  outline: 3px solid green;
 }
 
 input[type='number'] {

@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import Card from 'components/Card';
 import { getInfo } from 'api';
 import { IDXContext } from 'context';
+import Timer from './Timer';
 
+// 🐌🐌🐌🐌🐌🐌🐌
+// Synchronous
+// 🐌🐌🐌🐌🐌🐌🐌
 export default class App extends Component {
   static contextType = IDXContext;
   render() {
     const idx = this.context;
     return (
-      <div className="App">
-        <h3 style={{ textAlign: 'center', color: 'red' }}>Synchronous</h3>
+      <div className="Synchronous App">
+        <h3>Synchronous</h3>
         <HeroCard id={idx} delay={100} />
-        <HeroCard id={idx + 1} delay={100} />
+        <HeroCard id={idx + 1} delay={1000} />
         <HeroCard id={idx + 2} delay={100} />
       </div>
     );
@@ -29,7 +33,7 @@ class HeroCard extends Component {
   }
   // cancel fetch when unmount?
   render() {
-    if (!this.state) return '🌀';
+    if (!this.state) return <Timer />;
     return <Card {...this.state} />;
   }
 }
