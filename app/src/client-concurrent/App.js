@@ -8,34 +8,25 @@ import Timer from './Timer';
 // 🐇🐇🐇🐇🐇🐇
 // Concurrent
 // 🐇🐇🐇🐇🐇🐇
-export default class App extends Component {
-  static contextType = IDXContext;
-  render() {
-    const idx = this.context;
-    return (
-      <div className="Concurrent App">
+export default function App() {
+  const idx = React.useContext(IDXContext);
+  return (
+    <div className="Concurrent App">
+      <Suspense fallback={<Timer />}>
         <h3>Concurrent</h3>
         <HeroCard id={idx} delay={100} />
         <HeroCard id={idx + 1} delay={1000} />
         <HeroCard id={idx + 2} delay={100} />
-      </div>
-    );
-  }
+      </Suspense>
+    </div>
+  );
 }
 
+const APIResource = createResource(getInfo);
 class HeroCard extends Component {
-  state = null;
-  componentDidMount() {
-    getInfo(this.props).then(x => this.setState(x));
-  }
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.id !== this.props.id)
-  //     getInfo(this.props).then(x => this.setState(x));
-  // }
-  // cancel fetch when unmount?
   render() {
-    if (!this.state) return <Timer />;
-    return <Card {...this.state} />;
+    const info = APIResource.read(this.props);
+    return <Card {...info} />;
   }
 }
 
