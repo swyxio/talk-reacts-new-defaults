@@ -28,13 +28,11 @@ class HeroCard extends Component {
     getInfo(this.props).then(x => this.setState(x));
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id)
+    if (prevProps.id !== this.props.id) {
       getInfo(this.props).then(x => this.setState(x));
+    }
   }
-  componentWillMount() {
-    // cancel fetch when unmount?
-    // ????
-  }
+  // cancel fetch when unmount?
   render() {
     if (!this.state) return <Timer />;
     return <Card {...this.state} />;
