@@ -24,7 +24,8 @@ input[type='number'] {
   border: 1px solid #bbb;
   border-color: #bbb #ececec #ececec #bbb;
   padding: 0.2rem;
-  width: 30px;
+  width: 3rem;
+  font-size: 1.5rem;
 }
 
 input[type='number']::-webkit-outer-spin-button,
@@ -33,7 +34,7 @@ input[type='number']::-webkit-inner-spin-button {
   background: #fff
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAKUlEQVQYlWNgwAT/sYhhKPiPT+F/LJgEsHv37v+EMGkmkuImoh2NoQAANlcun/q4OoYAAAAASUVORK5CYII=)
     no-repeat center center;
-  width: 1em;
+  width: 1rem;
   border-left: 1px solid #bbb;
   opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
   position: absolute;

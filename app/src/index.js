@@ -28,21 +28,21 @@ class App extends React.Component {
     const { Synchronous, Concurrent, idx } = this.state;
     return (
       <div>
+        <h3 style={{ textAlign: 'center' }}>
+          <em>Characters of</em> Stan Lee
+        </h3>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div>
-            <h3 style={{ paddingRight: 10 }}>
-              <em>Characters of</em> Stan Lee
-            </h3>
-            <label>
-              <input type="number" value={idx} min="0" onChange={this.onIdx} />-{' '}
-              {idx + 2} of 296 characters
-            </label>
-          </div>
+          <label>
+            <input type="number" value={idx} min="0" onChange={this.onIdx} />-{' '}
+            {idx + 2} of 296 characters
+          </label>
+
           <div
             style={{
               display: 'inline-flex',
               flexDirection: 'column',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              paddingLeft: '3rem'
             }}
           >
             <CheckBox
