@@ -59,27 +59,13 @@ class App extends React.Component {
         </div>
         <IDXContext.Provider value={idx}>
           <div className="BiPanel">
-            {Synchronous && <SMode />}
-            {Concurrent && <CMode />}
+            {Synchronous && <SmodeApp />}
+            {Concurrent && <CmodeApp />}
           </div>
         </IDXContext.Provider>
       </div>
     );
   }
-}
-function SMode() {
-  return (
-    <>
-      <SmodeApp />
-    </>
-  );
-}
-function CMode() {
-  return (
-    <ConcurrentMode>
-      <CmodeApp />
-    </ConcurrentMode>
-  );
 }
 
 function CheckBox({ label, state, handler }) {
@@ -92,9 +78,9 @@ function CheckBox({ label, state, handler }) {
 }
 
 // syncMode
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
 
 // concurrentMode
-// const container = document.getElementById('root');
-// const root = ReactDOM.createRoot(container);
-// root.render(<App />);
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(<App />);
