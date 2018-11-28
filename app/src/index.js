@@ -1,9 +1,10 @@
-import React, { ConcurrentMode, Suspense } from 'react';
+import React, { ConcurrentMode } from 'react';
 import ReactDOM from 'react-dom';
 import 'index.css';
 import CmodeApp from 'client-concurrent/App';
 import SmodeApp from 'client-sync/App';
 import { IDXContext } from 'context';
+import { unstable_scheduleCallback as defer } from 'scheduler';
 function getFromStorage(str, defaultValue) {
   const temp = window.localStorage.getItem('reactsNewDefaults_' + str);
   if (temp) return 'true' === temp;
@@ -21,7 +22,8 @@ class App extends React.Component {
       Concurrent: getFromStorage('Concurrent', false)
     });
   };
-  onIdx = e => this.setState({ idx: Number(e.target.value) });
+  onIdx = ({ target: { value } }) =>
+    defer(() => this.setState({ idx: Number(value) }));
   handler = modeName =>
     this.setState(setStorage(modeName, { [modeName]: !this.state[modeName] }));
   render() {
