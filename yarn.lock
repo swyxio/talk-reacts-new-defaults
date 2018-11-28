@@ -910,11 +910,6 @@
     "@svgr/core" "^2.4.1"
     loader-utils "^1.1.0"
 
-"@swyx/createcontexts@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@swyx/createcontexts/-/createcontexts-1.0.1.tgz#7c1879f60a3909ae107366b4bdc40d9340a4ac94"
-  integrity sha512-W5t61Tf1JpKFKnadoW/jROUvyKikN8jzLAxqK3i3jzQySC5Y1c2TOGFaIvfn14i1k+if3lVFckn3rkUgawHfOA==
-
 "@types/tapable@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.2.tgz#e13182e1b69871a422d7863e11a4a6f5b814a4bd"
