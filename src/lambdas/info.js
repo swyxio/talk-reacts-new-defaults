@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import { getDB } from './db/getdb';
+import fs from "fs";
+import path from "path";
+import { getDB } from "./db/getdb";
 
-export function handler(event, context, callback) {
+export async function handler(event) {
   // params
   const timeout = event.queryStringParameters.delay || 100;
   let id = Number(event.queryStringParameters.id) || 0;
@@ -15,13 +15,13 @@ export function handler(event, context, callback) {
   // pagination
   data = data[id];
   // response
-  setTimeout(
-    () =>
-      callback(null, {
+  console.log({ data, timeout, id });
+  return new Promise((res) => {
+    setTimeout(() => {
+      res({
         statusCode: 200,
-        // body: data
-        body: JSON.stringify(data)
-      }),
-    Number(timeout)
-  );
+        body: JSON.stringify(data),
+      });
+    }, Number(timeout));
+  });
 }
